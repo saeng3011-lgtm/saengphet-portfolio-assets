@@ -1,0 +1,15 @@
+<!doctype html><html lang="lo"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin | Saengphet</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="site-header"><a class="brand" href="index.html">SAENGPHET<span> CREATIVE</span></a><nav><a href="index.html">ໜ້າຫຼັກ</a><a href="portfolio.html">Portfolio</a></nav></header>
+<main class="admin-wrap"><p class="eyebrow">PORTFOLIO MANAGER</p><h1 class="admin-title">ຈັດການຜົນງານ</h1>
+<div class="notice admin-panel"><b>ໝາຍເຫດ:</b> ແບບຟຣີນີ້ສ້າງໄຟລ໌ portfolio.json ໃຫ້. ຕ້ອງນຳໄຟລ໌ໄປອັບເດດໃນ GitHub ເອງ ເພື່ອເຜີຍແຜ່. ໜ້ານີ້ບໍ່ມີລະບົບລັອກອິນ ແລະບໍ່ຄວນໃສ່ password ຫຼື token.</div>
+<section class="admin-panel"><h2>1. ເພີ່ມຜົນງານ</h2><form id="itemForm" class="form-grid">
+<div class="field"><label for="title">ຊື່ຜົນງານ *</label><input id="title" required maxlength="100"></div>
+<div class="field"><label for="category">ໝວດ</label><select id="category"><option value="graphic">Graphic Design</option><option value="web">Website Design</option><option value="video">Video Production</option><option value="print">Print Design</option></select></div>
+<div class="field full"><label for="description">ຄຳອະທິບາຍ</label><textarea id="description" maxlength="500"></textarea></div>
+<div class="field"><label for="price">ລາຄາ</label><input id="price" placeholder="ສອບຖາມລາຄາ"></div>
+<div class="field"><label for="imageUrl">ລິ້ງຮູບພາບ</label><input id="imageUrl" type="url" placeholder="https://..."></div>
+<div class="field full"><label for="videoUrl">YouTube URL (ສຳລັບ Video)</label><input id="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=..."></div>
+<div class="field"><label><input id="published" type="checkbox" checked style="width:auto"> ເຜີຍແຜ່ຜົນງານ</label></div><div class="field"><button class="btn" type="submit">ເພີ່ມເຂົ້າລາຍການ</button></div></form>
+<p class="notice">ຮູບພາບ: ອັບໂຫຼດຮູບໃສ່ GitHub ກ່ອນ ແລ້ວວາງ Raw URL ທີ່ນີ້. ວິດີໂອ: ອັບໂຫຼດ YouTube ແລ້ວວາງ URL.</p></section>
+<section class="admin-panel"><h2>2. ລາຍການ</h2><p class="notice" id="status">ກຳລັງໂຫຼດ...</p><div id="itemList" class="admin-list"></div><div class="admin-actions"><button id="download" class="btn" type="button">ດາວໂຫຼດ portfolio.json</button><button id="copy" class="btn-secondary" type="button">ຄັດລອກ JSON</button><button id="reload" class="btn-secondary" type="button">ໂຫຼດຄືນ</button></div></section>
+<section class="admin-panel"><h2>3. ອັບເດດໃນ GitHub</h2><ol class="steps"><li>ດາວໂຫຼດ portfolio.json ຈາກປຸ່ມຂ້າງເທິງ.</li><li>ເປີດ repository ແລະ folder <b>data</b>.</li><li>ເປີດ portfolio.json ແລ້ວກົດຮູບດິນສໍ Edit.</li><li>ແທນເນື້ອຫາເກົ່າດ້ວຍ JSON ທີ່ດາວໂຫຼດ ແລ້ວກົດ Commit changes.</li><li>Refresh ໜ້າ Portfolio ເພື່ອເບິ່ງຜົນ.</li></ol><a class="btn" href="https://github.com/saeng3011-lgtm/saengphet-portfolio-assets" target="_blank" rel="noopener">ເປີດ GitHub Repository ↗</a></section></main><footer>© <span id="year"></span> Saengphet Creative.</footer><script src="admin.js"></script></body></html>

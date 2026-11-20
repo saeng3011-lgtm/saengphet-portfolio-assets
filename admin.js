@@ -1,0 +1,10 @@
+const DATA_URL="data/portfolio.json", $=id=>document.getElementById(id);let items=[];$("year").textContent=new Date().getFullYear();
+const safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function load(){try{const r=await fetch(DATA_URL+"?t="+Date.now());if(!r.ok)throw Error();items=await r.json();if(!Array.isArray(items))items=[];$("status").textContent="ມີຜົນງານ "+items.length+" ລາຍການ";}catch(e){items=[];$("status").textContent="ອ່ານ data/portfolio.json ບໍ່ໄດ້. ໃຫ້ເປີດຜ່ານ GitHub Pages ຫຼື Live Server.";}render();}
+function render(){$("itemList").innerHTML=items.length?items.map((x,i)=>`<div class="admin-row"><div><b>${safe(x.title)}</b><br><small>${safe(x.category)} · ${x.published===false?"ຊ່ອນ":"ເຜີຍແຜ່"}</small></div><button class="btn-danger" type="button" data-remove="${i}">ລຶບ</button></div>`).join(""):'<p class="notice">ຍັງບໍ່ມີຜົນງານ.</p>';}
+$("itemForm").addEventListener("submit",e=>{e.preventDefault();items.unshift({id:"work-"+Date.now(),title:$("title").value.trim(),category:$("category").value,description:$("description").value.trim(),price:$("price").value.trim(),imageUrl:$("imageUrl").value.trim(),videoUrl:$("videoUrl").value.trim(),published:$("published").checked});render();$("status").textContent="ເພີ່ມແລ້ວ. ກົດດາວໂຫຼດ JSON ແລະອັບເດດ GitHub."; $("itemForm").reset();$("published").checked=true;});
+$("itemList").addEventListener("click",e=>{const b=e.target.closest("[data-remove]");if(!b)return;items.splice(+b.dataset.remove,1);render();$("status").textContent="ລຶບຈາກລາຍການແລ້ວ. ດາວໂຫຼດ JSON ແລະອັບເດດ GitHub."});
+const json=()=>JSON.stringify(items,null,2);
+$("download").addEventListener("click",()=>{const u=URL.createObjectURL(new Blob([json()],{type:"application/json"}));const a=document.createElement("a");a.href=u;a.download="portfolio.json";a.click();URL.revokeObjectURL(u);});
+$("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(json());$("status").textContent="ຄັດລອກ JSON ແລ້ວ.";}catch(e){$("status").textContent="ຄັດລອກບໍ່ໄດ້. ໃຫ້ດາວໂຫຼດ JSON ແທນ.";}});
+$("reload").addEventListener("click",load);load();
